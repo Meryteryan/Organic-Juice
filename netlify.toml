@@ -1,0 +1,9 @@
+# Netlify publishes the site folder and runs the cart's server code from netlify/functions.
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+  # Tests must pass before a deploy goes out.
+  command = "npm test"
+
+[functions]
+  node_bundler = "esbuild"
