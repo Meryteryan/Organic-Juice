@@ -68,10 +68,10 @@ test('a failed email still confirms the order', async () => {
 test('test or live mode follows the Stripe key', () => {
   const saved = { ...process.env };
   try {
-    for (const [key, live, ready] of [['sk_test_abc', false, true], ['sk_live_abc', true, true], ['', false, false], ['pk_live_abc', false, false]]) {
+    for (const [key, live, ready, status] of [['sk_test_abc', false, true, 'ok'], [' sk_test_abc\n', false, true, 'ok'], ['sk_live_abc', true, true, 'ok'], ['', false, false, 'missing'], ['pk_live_abc', false, false, 'unrecognized']]) {
       delete process.env.STRIPE_RESTRICTED_KEY; process.env.STRIPE_SECRET_KEY = key;
       const s = settings();
-      assert.equal(s.live, live); assert.equal(!!s.stripe, ready);
+      assert.equal(s.live, live); assert.equal(!!s.stripe, ready); assert.equal(s.keyStatus, status);
     }
   } finally { process.env = saved; }
 });
