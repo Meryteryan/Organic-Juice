@@ -372,8 +372,8 @@ a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
 .juice-photo img{display:block;max-width:none}
 .juice-photo.cutout{aspect-ratio:2216 / 1124}
 .juice-photo.cutout img{position:absolute;width:129.4224%;height:auto;left:-11.778%;top:-158.185%}
-.juice-photo.original{aspect-ratio:1 / 1}
-.juice-photo.original img{width:100%;height:100%;object-fit:cover;object-position:50% 57%}
+.juice-photo.original{aspect-ratio:16 / 10}
+.juice-photo.original img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 
 .checkout-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
 .checkout-choice{display:flex;flex-direction:column;gap:6px;padding:18px;border:2px solid var(--ink);border-radius:18px;background:var(--cream);color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
@@ -470,9 +470,11 @@ a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
 .shop .section-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px}
 .shop .section-head .shop-price{display:inline-block;margin:0}
 
-/* Smaller hero photo card. */
-.hero-lineup{max-width:300px}
-@media(max-width:650px){.hero-lineup{max-width:230px}}
+/* Hero photo card: fills its column and scales with the screen. On wide screens the photo
+   column gets the larger share so the jars read big next to the headline. */
+.hero-lineup{width:100%;max-width:720px;justify-self:center;padding:clamp(12px,1.6vw,18px)}
+@media(min-width:901px){.hero{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}}
+@media(max-width:650px){.hero-lineup{max-width:none}}
 
 /* Weekend cards: stack until there is room for both side by side. */
 @media(max-width:900px){.weekend-spots{grid-template-columns:1fr;gap:10px}}
@@ -503,11 +505,11 @@ a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
 <section id="home" class="hero">
   <div class="hero-copy">
     <h1>REAL <br class="hero-break">PRODUCE.<br><span>REAL JUICE.</span></h1>
-    <p class="lead">Fresh, cold-pressed juice made with organic produce. A little sunshine in every jar.</p>
+    <p class="lead">Cold-pressed organic juice made with produce from local farms and packed with vitamins. A little sunshine in <span style="white-space:nowrap">every jar!</span></p>
   </div>
   <a class="hero-lineup" href="#order" aria-label="Choose and order your juices">
     <p class="lineup-label">Meet the juices</p>
-    <span class="juice-photo original"><img src="juice-lineup.webp" width="800" height="800" alt="Four glass jars of fresh juice in deep purple, green, orange, and pink." fetchpriority="high" decoding="async"></span>
+    <span class="juice-photo original"><img src="juice-lineup.webp" width="1000" height="625" alt="Four glass jars of fresh juice in deep purple, green, orange, and pink." fetchpriority="high" decoding="async"></span>
   </a>
 </section>
 
