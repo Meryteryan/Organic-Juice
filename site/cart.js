@@ -12,11 +12,11 @@ const items=()=>Object.entries(quantities).filter(([,q])=>q>0).map(([slug,quanti
 function render(){
  let count=0;
  for(const card of cards){const q=quantities[card.dataset.product];count+=q;card.querySelector('input').value=q;card.querySelector('[data-delta="-1"]').disabled=busy||q===0;card.querySelector('[data-delta="1"]').disabled=busy||q===99;card.querySelector('input').disabled=busy;}
- $('cart-count').textContent=count+' '+(count===1?'jar':'jars');$('cart-total').textContent=money(count*1600);$('cart-empty').hidden=count!==0;$('cart-checkout').disabled=!ready||busy||count===0;
+ $('cart-count').textContent=count+' '+(count===1?'jar':'jars');$('cart-total').textContent=money(count*1500);$('cart-empty').hidden=count!==0;$('cart-checkout').disabled=!ready||busy||count===0;
  $('cart-lines').replaceChildren();
  for(const {slug,quantity} of items()){
  const li=document.createElement('li'),label=document.createElement('span'),price=document.createElement('strong'),remove=document.createElement('button');
- label.textContent=quantity+' × '+names[slug];price.textContent=money(quantity*1600);remove.type='button';remove.textContent='Remove';remove.setAttribute('aria-label','Remove '+names[slug]+' from order');remove.disabled=busy;remove.onclick=()=>change(slug,0);li.append(label,price,remove);$('cart-lines').append(li);
+ label.textContent=quantity+' × '+names[slug];price.textContent=money(quantity*1500);remove.type='button';remove.textContent='Remove';remove.setAttribute('aria-label','Remove '+names[slug]+' from order');remove.disabled=busy;remove.onclick=()=>change(slug,0);li.append(label,price,remove);$('cart-lines').append(li);
  }
  try{localStorage.setItem(storageKey,JSON.stringify(quantities));}catch{}
 }
